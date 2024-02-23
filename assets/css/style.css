@@ -230,10 +230,10 @@ img {
 }
 
 /* TEAM */
-/*#team .image-zoom-wrapper{
+#team .image-zoom-wrapper{
     left:150px;
     
-}*/
+}
 .team-member-content {
     background-color: var(--c-brand);
     position: absolute;
