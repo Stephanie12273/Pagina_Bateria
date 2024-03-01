@@ -23,7 +23,7 @@ const database=getDatabase(app)
 
 
 //button
-const submit = document.getElementById('registerButton');
+const submit = document.getElementById('loginButton');
 submit.addEventListener("click", function (event) {
   event.preventDefault()
   //inputs
