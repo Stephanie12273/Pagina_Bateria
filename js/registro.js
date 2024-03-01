@@ -1,5 +1,6 @@
  // Import the functions you need from the SDKs you need
  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+ import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
  // TODO: Add SDKs for Firebase products that you want to use
  // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -16,6 +17,7 @@
 
  // Initialize Firebase
  const app = initializeApp(firebaseConfig);
+ const auth=getAuth(app)
 
  //inputs
  const nombre=document.getElementById('fullname').value;
@@ -23,13 +25,27 @@
  const  motor=document.getElementById('motor').value;
  const  chasis=document.getElementById('chasis').value;
  const  email=document.getElementById('correo').value;
- const  contraseña=document.getElementById('contrasena').value;
+ const  password=document.getElementById('contrasena').value;
 
  //button
  const submit =document.getElementById('registerButton');
  submit.addEventListener("click",function(event){
     event.preventDefault()
-    alert(5)
+    //alert("Registrado correctamente")
+    createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    alert("Registrado correctamente")
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage)
+    // ..
+  });
+
  })
 
 
