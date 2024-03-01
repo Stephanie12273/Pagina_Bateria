@@ -38,26 +38,38 @@
                             <img src="./assets/images/Logo.png" alt="" width="200px">
                         </a>
                         <h2>Iniciar Sesión</h2>
-                        <input type="text" placeholder="Correo Electronico" name="correo">
-                        <input type="password" placeholder="Contraseña" name="contrasena">
-                        <button>Entrar</button>
+                        <input type="email" placeholder="Correo Electronico" id="email" autocomplete="off">
+                        <input type="password" placeholder="Contraseña" id="password">
+                        <button id="loginButton">Entrar</button>
                     </form>
 
                     <!--Register-->
-                    <form action=""  class="formulario__register">
+                    <form class="formulario__register">
                         <h2>Regístrarse</h2>
-                        <input type="text" placeholder="Nombre completo" name="nombre">
-                        <input type="text" placeholder="Cedula" name="cedula">
-                        <input type="text" placeholder="No.motor" name="motor">
-                        <input type="text" placeholder="No.chasis" name="chasis">
-                        <input type="text" placeholder="Correo Electronico" name="correo">
-                        <input type="password" placeholder="Contraseña" name="contrasena">
-                        <button>Registrar</button>
+                        <input type="text" placeholder="Nombre completo" id="fullname" required autocomplete="off">
+                        <input type="text" placeholder="Cedula" id="cedula" required>
+                        <input type="text" placeholder="No.motor" id="motor" required>
+                        <input type="text" placeholder="No.chasis" id="chasis" required>
+                        <input type="email" placeholder="Correo Electronico" id="correo" required autocomplete="off">
+                        <input type="password" placeholder="Contraseña" id="contrasena" required>
+                        <button type="submit" class="login-btn" id="registerButton">Registrar</button>
                     </form>
                 </div>
             </div>
-        </main>     
+        </main>    
+        
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script> 
+
+        <!-- Our script must be loaded after firebase references -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script src="assets/js/script.js"></script>
+        
 </body>
 </html>
