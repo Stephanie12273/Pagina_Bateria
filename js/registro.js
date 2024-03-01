@@ -45,7 +45,7 @@ submit.addEventListener("click", function (event) {
         email:email        
       })
       alert("creando usuario ...")
-      window.location.href="login.html";
+      window.location.href="Login.html";
       // ...
     })
     .catch((error) => {
