@@ -27,10 +27,6 @@ const submit = document.getElementById('loginButton');
 submit.addEventListener("click", function (event) {
   event.preventDefault()
   //inputs
-  const nombre = document.getElementById('fullname').value;
-  const cedula = document.getElementById('cedula').value;
-  const motor = document.getElementById('motor').value;
-  const chasis = document.getElementById('chasis').value;
   const email = document.getElementById('correo').value;
   const password = document.getElementById('contrasena').value;
   signInWithEmailAndPassword(auth, email, password)
