@@ -17,7 +17,7 @@
 
  // Initialize Firebase
  const app = initializeApp(firebaseConfig);
- const auth=getAuth(app)
+ const auth=getAuth(app);
 
  //inputs
  const nombre=document.getElementById('fullname').value;
@@ -31,7 +31,19 @@
  const submit =document.getElementById('registerButton');
  submit.addEventListener("click",function(event){
     event.preventDefault()
-    alert(3)
+    createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    alert ("creando usuario ...")
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage)
+    // ..
+  });
   })
 
 
