@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import { getDatabase,set,ref } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -45,7 +46,7 @@ submit.addEventListener("click", function (event) {
         email:email        
       })
       alert("creando usuario ...")
-      window.location.href="Login.html";
+     
       // ...
     })
     .catch((error) => {
@@ -54,6 +55,28 @@ submit.addEventListener("click", function (event) {
       alert(errorMessage)
       // ..
     });
+})
+
+//button
+const login = document.getElementById('loginButton');
+submit.addEventListener("click", function (event) {
+  event.preventDefault()
+  //inputs
+  const email = document.getElementById('correo').value;
+  const password = document.getElementById('contrasena').value;
+  signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    alert("correcto")
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage)
+  });
+
 })
 
 
