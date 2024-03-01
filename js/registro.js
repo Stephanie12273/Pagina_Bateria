@@ -31,20 +31,8 @@
  const submit =document.getElementById('registerButton');
  submit.addEventListener("click",function(event){
     event.preventDefault()
-    //alert("Registrado correctamente")
-    createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
     alert("Registrado correctamente")
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(errorMessage)
-    // ..
-  });
+   
 
  })
 
