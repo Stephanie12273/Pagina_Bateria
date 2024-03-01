@@ -59,7 +59,7 @@ submit.addEventListener("click", function (event) {
 
 //button
 const login = document.getElementById('loginButton');
-submit.addEventListener("click", function (event) {
+login.addEventListener("click", function (event) {
   event.preventDefault()
   //inputs
   const email = document.getElementById('correo').value;
