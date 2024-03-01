@@ -37,7 +37,7 @@ submit.addEventListener("click", function (event) {
     .then((userCredential) => {
       // Signed up 
       const user = userCredential.user;
-      set(ref(database, 'users/'+user.uid),{
+      set(ref(database, 'usuarios/'+user.uid),{
         nombre:nombre,
         cedula:cedula,
         motor:motor,
