@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getDatabase,set,ref } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,7 +20,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const database=getDatabase(app)
+const database = getDatabase(app)
 
 
 //button
@@ -38,15 +38,15 @@ submit.addEventListener("click", function (event) {
     .then((userCredential) => {
       // Signed up 
       const user = userCredential.user;
-      set(ref(database, 'usuarios/'+user.uid),{
-        nombre:nombre,
-        cedula:cedula,
-        motor:motor,
-        chasis:chasis,
-        email:email        
+      set(ref(database, 'usuarios/' + user.uid), {
+        nombre: nombre,
+        cedula: cedula,
+        motor: motor,
+        chasis: chasis,
+        email: email
       })
       alert("creando usuario ...")
-     
+
       // ...
     })
     .catch((error) => {
@@ -62,21 +62,21 @@ const login = document.getElementById('loginButton');
 login.addEventListener("click", function (event) {
   event.preventDefault()
   //inputs
-  const email = document.getElementById('correo').value;
-  const password = document.getElementById('contrasena').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
   signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    alert("Bienvenido"+ email)
-    window.location.href="Dashboard.html";
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(errorMessage)
-  });
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      alert("Bienvenido" + email)
+      window.location.href = "Dashboard.html";
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage)
+    });
 
 })
 
