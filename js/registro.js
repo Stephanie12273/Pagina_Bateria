@@ -67,8 +67,7 @@ login.addEventListener("click", function (event) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
-      const user = userCredential.user;
-      alert("Bienvenido" + email)
+      const user = userCredential.user;      
       window.location.href = "Dashboard.html";
       // ...
     })
