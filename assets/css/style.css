@@ -117,6 +117,9 @@ img {
     font-size: 22px;
 }
 
+#hero h1{
+    font-size: 38px;
+}
 /* SECTION TITLE */
 .section-title {
     margin-bottom: 60px;
@@ -230,10 +233,7 @@ img {
 }
 
 /* TEAM */
-#team .image-zoom-wrapper{
-    left:150px;
-    
-}
+
 .team-member-content {
     background-color: var(--c-brand);
     position: absolute;
