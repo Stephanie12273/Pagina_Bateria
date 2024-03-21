@@ -2,6 +2,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
+src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"
+src="https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js"
+
 
 // Configuración de Firebase
 const firebaseConfig = {
