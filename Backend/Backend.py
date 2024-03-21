@@ -10,10 +10,15 @@ EstadoCarga = df["SoC [%]"].tolist()
 Corriente = df["Battery Current [A]"].tolist()
 Elevacion = df["Elevation [m]"].tolist()
 
-# Enviar cada segundo valor de velocidad a Firebase
+# Enviar datos a Firebase cada 5 segundos
 for i in range(0, len(velocidades), 2):
-    firebase.post('/Backend/datos/Carro1', {'velocidad': velocidades[i]})
-    firebase.post('/Backend/datos/Carro1',{'SoC': EstadoCarga[i]})
-    firebase.post('/Backend/datos/Carro1',{'Corriente': Corriente[i]})
-    firebase.post('/Backend/datos/Carro1',{'Elevacion': Elevacion[i]})      
-    time.sleep(20)
+    data = {
+        'velocidad': velocidades[i],
+        'SoC': EstadoCarga[i],
+        'Corriente': Corriente[i],
+        'Elevacion': Elevacion[i]
+    }
+    firebase.post('/usuarios/datos/Carro1', data)
+    time.sleep(5)
+
+print(Datos)
