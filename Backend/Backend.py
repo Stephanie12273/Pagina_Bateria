@@ -18,5 +18,5 @@ for i in range(0, len(velocidades), 2):
         'Corriente': Corriente[i],
         'Elevacion': Elevacion[i]
     }
-    firebase.post('/usuarios/Stephanie/datos/Carro1', data)
+    firebase.post('/Backend/datos/Carro1', data)
     time.sleep(5) 

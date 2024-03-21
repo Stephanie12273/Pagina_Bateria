@@ -1,43 +1,39 @@
-// Import the functions you need from the SDKs you need
+// Importar las funciones necesarias de la SDK de Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
+// Configuración de Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyBgBuZFXHhpoQKHyPDIObZjHVEl1R7OhgE",
-  authDomain: "proyecto-48aa4.firebaseapp.com",
-  databaseURL: "https://proyecto-48aa4-default-rtdb.firebaseio.com",
-  projectId: "proyecto-48aa4",
-  storageBucket: "proyecto-48aa4.appspot.com",
-  messagingSenderId: "938336050215",
-  appId: "1:938336050215:web:92bc33869a927a48510202"
+    apiKey: "AIzaSyBgBuZFXHhpoQKHyPDIObZjHVEl1R7OhgE",
+    authDomain: "proyecto-48aa4.firebaseapp.com",
+    databaseURL: "https://proyecto-48aa4-default-rtdb.firebaseio.com",
+    projectId: "proyecto-48aa4",
+    storageBucket: "proyecto-48aa4.appspot.com",
+    messagingSenderId: "938336050215",
+    appId: "1:938336050215:web:92bc33869a927a48510202"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// Inicializar la aplicación de Firebase
+const firebaseApp = initializeApp(firebaseConfig);
 
-// Referenciar el data
-const dbRef = firebase.database().ref('Backend/datos/Carro1');
+// Referencia a la base de datos de Firebase
+const db = getDatabase(firebaseApp);
 
-// Obtenemos los valores 
-dbRef.on('value', (snapshot) => {
-    const data = snapshot.val(); //Obtener los datos
+// Referencia a los datos de velocidad en la base de datos
+const velocidadRef = ref(db, 'Backend/datos/Carro1/velocidad');
 
-    //Procesamiento de datos 
-    const velocidadData = data.velocidad;
-
-    // Configuramos las graficas 
+// Obtener los valores de velocidad y actualizar el gráfico cuando cambian
+onValue(velocidadRef, (snapshot) => {
+    const velocidadData = snapshot.val();
+    
+    // Configurar el gráfico de velocidad
     var velocidadChart = new Chart(document.getElementById('velocidad-chart'), {
         type: 'line',
         data: {
-            labels: ["Tiempo"], // Si la velocidad es un solo valor, establece una sola etiqueta
+            labels: Object.keys(velocidadData),
             datasets: [{
                 label: 'Velocidad',
-                data: [velocidadData], // Solo necesitas pasar el valor directamente
+                data: Object.values(velocidadData),
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension : 0.1
