@@ -37,40 +37,45 @@ onAuthStateChanged(auth, (user) => {
                 document.getElementById("usercedula").value = userData.cedula;
                 document.getElementById("usermotor").value = userData.motor;
                 document.getElementById("userchasis").value = userData.chasis;
+
+                console.log("datos presentados");
+
                 
                 // Otros datos de perfil...
             } else {
-                console.log("No se encontraron datos para el usuario");
+                alert("No se encontraron datos para el usuario");
             }
         });
     } else {
         // Usuario no autenticado, redirigir a la página de inicio de sesión
         window.location.href = "Login.html";
-    }
+    }    
 });
 
 // Agregar event listener para el botón de "Actualizar"
+
 document.getElementById("Actualizar").addEventListener("click", () => {
-    
     const newName = document.getElementById("username").value;
     const newCedula = document.getElementById("usercedula").value;
     const newMotor = document.getElementById("usermotor").value;
-    const newChasis = document.getElementById("userchasis").value;
+    const newChasis = document.getElementById("userchasis").value;   
 
     // Actualizar los datos en la base de datos de Firebase
     update(ref(database, 'usuarios/' + uid), {
         nombre: newName,
         cedula: newCedula,
         motor: newMotor,
-        chasis: newChasis  
+        chasis: newChasis,
 
-        
-    }).then(() => {
-        alert("Datos actualizados")
     }).catch((error) => {
         console.error("Error al actualizar los datos:", error);
     });
+    
+    alert("Datos actualizados")
+    window.location.href="Dashboard.html";
+    
 });
+
 
 const logout = document.getElementById("fin_sesion");
 logout.addEventListener('click', function logout() {
@@ -83,3 +88,4 @@ logout.addEventListener('click', function logout() {
         alert(errorMessage)
     });
 });
+
