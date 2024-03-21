@@ -21,10 +21,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app)
+let uid;
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        const uid = user.uid; // Obtener el UID del usuario autenticado
+        uid = user.uid; // Obtener el UID del usuario autenticado
         const userRef = ref(database, 'usuarios/' + uid); // Construir la referencia en la base de datos
 
         // Escuchar cambios en los datos del usuario
@@ -50,6 +51,7 @@ onAuthStateChanged(auth, (user) => {
 
 // Agregar event listener para el botón de "Actualizar"
 document.getElementById("Actualizar").addEventListener("click", () => {
+    
     const newName = document.getElementById("username").value;
     const newCedula = document.getElementById("usercedula").value;
     const newMotor = document.getElementById("usermotor").value;
