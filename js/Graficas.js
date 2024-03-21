@@ -14,11 +14,11 @@ const firebaseConfig = {
 };
 
 // Inicializar la aplicación de Firebase
-const firebaseApp = initializeApp(firebaseConfig);
+const firebase = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // Referencia a la base de datos de Firebase
-const db = getDatabase(firebaseApp);
+const db = getDatabase(firebase);
 
 // Referencia a los datos de velocidad en la base de datos
 const velocidadRef = ref(db, 'Backend/datos/Carro1/velocidad');
