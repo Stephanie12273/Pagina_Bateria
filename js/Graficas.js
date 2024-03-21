@@ -32,6 +32,7 @@ dbRef.on('value',(snapshot) => {
 
 
     // Configuramos las graficas 
+    
 
     var velocidadChart = new Chart(document.getElementById('velocidad-chart'), {
         type: 'line',
