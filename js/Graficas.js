@@ -21,26 +21,23 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // Referenciar el data
-const dbRef = firebas.database().ref('usuarios/Stephanie/datos/Carro1');
+const dbRef = firebase.database().ref('Backend/datos/Carro1');
 
 // Obtenemos los valores 
-dbRef.on('value',(snapshot) => {
+dbRef.on('value', (snapshot) => {
     const data = snapshot.val(); //Obtener los datos
 
     //Procesamiento de datos 
     const velocidadData = data.velocidad;
 
-
     // Configuramos las graficas 
-    
-
     var velocidadChart = new Chart(document.getElementById('velocidad-chart'), {
         type: 'line',
         data: {
-            labels: Object.keys(velocidadData),
+            labels: ["Tiempo"], // Si la velocidad es un solo valor, establece una sola etiqueta
             datasets: [{
                 label: 'Velocidad',
-                data: Object.values(velocidadData),
+                data: [velocidadData], // Solo necesitas pasar el valor directamente
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension : 0.1
@@ -54,5 +51,4 @@ dbRef.on('value',(snapshot) => {
             }
         }
     });
-
 });
