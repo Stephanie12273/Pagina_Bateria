@@ -14,7 +14,7 @@ const firebaseConfig = {
 };
 
 // Inicializar la aplicación de Firebase
-const firebaseApp = initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 // Referencia a la base de datos de Firebase
 const db = getDatabase(firebaseApp);
