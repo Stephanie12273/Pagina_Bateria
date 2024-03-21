@@ -1,33 +1,19 @@
-import csv
-import random
+from firebase import firebase
+import pandas as pd
+import time
 
-# Función para generar datos simulados
-def generar_datos_simulados():
-    tiempo = 0
-    datos = []
-    for _ in range(10):  # Generar datos para 10 puntos en el tiempo
-        temperatura = random.uniform(20, 30)  # Temperatura en grados Celsius
-        elevacion = random.uniform(0, 1000)  # Elevación en metros
-        velocidad = random.uniform(5, 20)  # Velocidad en metros por segundo
-        corriente = random.uniform(0, 5)  # Corriente en amperios
-        datos.append([tiempo, temperatura, elevacion, velocidad, corriente])
-        tiempo += 1  # Aumentar el tiempo en cada iteración
-    return datos
+firebase = firebase.FirebaseApplication("https://proyecto-48aa4-default-rtdb.firebaseio.com/", None)
 
-# Función para escribir los datos en un archivo CSV
-def escribir_datos_csv(datos, nombre_archivo):
-    with open(nombre_archivo, 'w', newline='') as archivo_csv:
-        escritor_csv = csv.writer(archivo_csv)
-        # Escribir encabezados
-        escritor_csv.writerow(['Tiempo', 'Temperatura (°C)', 'Elevación (m)', 'Velocidad (m/s)', 'Corriente (A)'])
-        # Escribir datos
-        escritor_csv.writerows(datos)
+df = pd.read_csv(r"C:\Users\Camilo Garcia\OneDrive - unimilitar.edu.co\Desktop\Universidad\Mantenimiento Preventido en la nube\Pagina_Bateria\Backend\TripA01.csv", encoding='latin1', sep=';')
+velocidades = df["Velocity [km/h]"].tolist()
+EstadoCarga = df["SoC [%]"].tolist()
+Corriente = df["Battery Current [A]"].tolist()
+Elevacion = df["Elevation [m]"].tolist()
 
-# Generar datos simulados
-datos_simulados = generar_datos_simulados()
-
-# Escribir datos en un archivo CSV
-nombre_archivo = 'datos_sensor.csv'
-escribir_datos_csv(datos_simulados, nombre_archivo)
-
-print(f"Los datos se han guardado en el archivo '{nombre_archivo}'")
+# Enviar cada segundo valor de velocidad a Firebase
+for i in range(0, len(velocidades), 2):
+    firebase.post('/Backend/datos/Carro1', {'velocidad': velocidades[i]})
+    firebase.post('/Backend/datos/Carro1',{'SoC': EstadoCarga[i]})
+    firebase.post('/Backend/datos/Carro1',{'Corriente': Corriente[i]})
+    firebase.post('/Backend/datos/Carro1',{'Elevacion': Elevacion[i]})      
+    time.sleep(20)
