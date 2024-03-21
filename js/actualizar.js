@@ -72,8 +72,6 @@ document.getElementById("Actualizar").addEventListener("click", () => {
         console.error("Error al actualizar los datos:", error);
     });
     alert("Datos actualizados")
-    
-    
 });
 
 // cerrar sesion
