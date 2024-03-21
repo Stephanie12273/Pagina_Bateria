@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+import { getDatabase, set, ref,child,update} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -23,6 +23,7 @@ const auth = getAuth(app);
 const database = getDatabase(app)
 
 
+
 //button
 const submit = document.getElementById('registerButton');
 submit.addEventListener("click", function (event) {
@@ -38,7 +39,7 @@ submit.addEventListener("click", function (event) {
     .then((userCredential) => {
       // Signed up 
       const user = userCredential.user;
-      set(ref(database, 'usuarios/' + user.uid), {
+      set(ref(database, 'usuarios/' + document.getElementById('fullname').value), {
         nombre: nombre,
         cedula: cedula,
         motor: motor,
@@ -78,5 +79,7 @@ login.addEventListener("click", function (event) {
     });
 
 })
+
+////
 
 
