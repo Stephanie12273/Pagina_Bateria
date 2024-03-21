@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getDatabase, ref, onValue   } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+import { getDatabase, ref, onValue ,update } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -22,8 +22,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app)
 
-
-
 onAuthStateChanged(auth, (user) => {
     if (user) {
         const uid = user.uid; // Obtener el UID del usuario autenticado
@@ -34,11 +32,11 @@ onAuthStateChanged(auth, (user) => {
             const userData = snapshot.val(); // Obtener los datos del usuario
             if (userData) {
                 // Actualizar la interfaz de usuario con los datos del perfil
-                document.getElementById("nombre_usuario").textContent = userData.nombre;
-                document.getElementById("correo_elec").textContent = userData.email;
-                document.getElementById("cedula").textContent = userData.cedula;
-                document.getElementById("motor").textContent = userData.motor;
-                document.getElementById("chasis").textContent = userData.chasis;
+                document.getElementById("username").value = userData.nombre;
+                document.getElementById("usercedula").value = userData.cedula;
+                document.getElementById("usermotor").value = userData.motor;
+                document.getElementById("userchasis").value = userData.chasis;
+                
                 // Otros datos de perfil...
             } else {
                 console.log("No se encontraron datos para el usuario");
@@ -48,6 +46,28 @@ onAuthStateChanged(auth, (user) => {
         // Usuario no autenticado, redirigir a la página de inicio de sesión
         window.location.href = "Login.html";
     }
+});
+
+// Agregar event listener para el botón de "Actualizar"
+document.getElementById("Actualizar").addEventListener("click", () => {
+    const newName = document.getElementById("username").value;
+    const newCedula = document.getElementById("usercedula").value;
+    const newMotor = document.getElementById("usermotor").value;
+    const newChasis = document.getElementById("userchasis").value;
+
+    // Actualizar los datos en la base de datos de Firebase
+    update(ref(database, 'usuarios/' + uid), {
+        nombre: newName,
+        cedula: newCedula,
+        motor: newMotor,
+        chasis: newChasis  
+
+        
+    }).then(() => {
+        alert("Datos actualizados")
+    }).catch((error) => {
+        console.error("Error al actualizar los datos:", error);
+    });
 });
 
 const logout = document.getElementById("fin_sesion");
@@ -61,7 +81,3 @@ logout.addEventListener('click', function logout() {
         alert(errorMessage)
     });
 });
-
-
-
-
