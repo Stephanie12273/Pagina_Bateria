@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { getDatabase} from "https://proyecto-48aa4-default-rtdb.firebaseio.com/"
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -15,7 +15,6 @@ const firebaseConfig = {
 
 // Inicializar la aplicación de Firebase
 const firebase = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 
 // Referencia a la base de datos de Firebase
 const db = getDatabase(firebase);
