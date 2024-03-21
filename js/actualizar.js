@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import { getDatabase, ref, onValue ,update } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,7 +20,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const database = getDatabase(app)
+const database = getDatabase(app);
+const storage = getStorage(app); 
 let uid;
 
 onAuthStateChanged(auth, (user) => {
@@ -70,13 +71,12 @@ document.getElementById("Actualizar").addEventListener("click", () => {
     }).catch((error) => {
         console.error("Error al actualizar los datos:", error);
     });
-    
     alert("Datos actualizados")
-    window.location.href="Dashboard.html";
+    
     
 });
 
-
+// cerrar sesion
 const logout = document.getElementById("fin_sesion");
 logout.addEventListener('click', function logout() {
     signOut(auth).then(() => {

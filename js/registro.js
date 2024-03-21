@@ -47,6 +47,7 @@ submit.addEventListener("click", function (event) {
         email: email
       })
       alert("creando usuario ...")
+      
 
       // ...
     })
@@ -81,5 +82,3 @@ login.addEventListener("click", function (event) {
 })
 
 ////
-
-
