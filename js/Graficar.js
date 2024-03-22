@@ -14,3 +14,6 @@ const firebaseConfig = {
 // Iniciamos Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+
+const vel = ref (database, 'Backend/datos/Carro1');
+console.log("Datos obtenidos");
