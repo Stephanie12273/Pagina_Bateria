@@ -1,20 +1,6 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getDatabase, set, ref,child,update} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+import app from 'registo.js'
 
-// Configuración de Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyBgBuZFXHhpoQKHyPDIObZjHVEl1R7OhgE",
-    authDomain: "proyecto-48aa4.firebaseapp.com",
-    databaseURL: "https://proyecto-48aa4-default-rtdb.firebaseio.com/",
-    projectId: "proyecto-48aa4",
-    storageBucket: "proyecto-48aa4.appspot.com",
-    messagingSenderId: "938336050215",
-    appId: "1:938336050215:web:92bc33869a927a48510202"
-};
-
-// Inicializar la aplicación de Firebase
-const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 // Referencia a los datos de velocidad en la base de datos
