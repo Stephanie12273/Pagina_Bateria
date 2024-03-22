@@ -14,7 +14,6 @@ Elevacion = df["Elevation [m]"].tolist()
 # Enviar datos a Firebase cada 5 segundos
 for i in range(0, len(velocidades), 2):
     data = {
-        'timestamp': tiempo,
         'velocidad': velocidades[i],
         'SoC': EstadoCarga[i],
         'Corriente': Corriente[i],

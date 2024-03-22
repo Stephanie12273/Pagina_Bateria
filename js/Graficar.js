@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import { getDatabase, ref, onValue, update} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-
+import Chart from "chart.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBgBuZFXHhpoQKHyPDIObZjHVEl1R7OhgE",
@@ -16,45 +16,35 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Obtencion de datos
-const vel = ref(database, 'Backend/datos/Carro1');
-console.log("Datos obtenidos");
+// obtener la referencia a los datos de velocidad en firebase
+const velref = ref(database, "Backend/datos/Carro1");
 
-// Ploteo en tiempo real
-onValue(velRef, (snapshot) => {
-    const velData = snapshot.val();
-    const labels = Object.keys(velData);
-    const data = Object.values(velData);
-
-    // Destruir el gráfico anterior si existe
-    if (velChart) {
-        velChart.destroy();
-    }
-
-    // Actualizar la gráfica
-    updateChart(labels, data);
+// Crear el gráfico utilizando Chart.js
+const ctx = document.getElementById("myChart").getContext("2d");
+const chart = new Chart(ctx, {
+    type: "line",
+    data: {
+        labels: [],
+        datasets: [
+            {
+                label: "Velocidad",
+                data: [],
+                fill: false,
+                borderColor: "rgb(75, 192, 192)",
+                tension: 0.1,
+            },
+,        ]
+    },
 });
 
-// Función para actualizar la gráfica
-function updateChart(labels, data) {
-    var velChart = new Chart(document.getElementById('velocidad-chart'),{
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label:'velocidad',
-                data: data,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension : 0.1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }    
+//
+onValue(velref, (snapshot) =>{
+    const datosCarro1 = snapshot.val();
+
+    Object.values(datosCarro1).forEach((dato) =>{
+        const velocidad = dato.velocidad;
+        chart.data.labels.push(new Date().toLocaleTimeString());
+        chart.data.datasets[0].data.push(velocidad);
     });
-}
+    Chart.update();
+});
