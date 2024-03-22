@@ -17,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 // Obtencion de datos
-const vel = doc(database, 'Backend/datos/Carro1');
+const vel = ref(database, 'Backend/datos/Carro1');
 console.log("Datos obtenidos");
 
 // Ploteo en tiempo real
@@ -30,7 +30,7 @@ onValue(velRef, (snapshot) => {
     if (velChart) {
         velChart.destroy();
     }
-        
+
     // Actualizar la gráfica
     updateChart(labels, data);
 });
