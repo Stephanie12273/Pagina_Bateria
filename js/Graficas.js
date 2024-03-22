@@ -15,7 +15,7 @@ const firebaseConfig = {
 
 // Inicializar la aplicación de Firebase
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app)
+const database = getDatabase(app);
 
 // Referencia a los datos de velocidad en la base de datos
 const velocidadRef = ref(database, 'Backend/datos/Carro1/velocidad');
