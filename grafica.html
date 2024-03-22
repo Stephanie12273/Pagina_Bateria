@@ -10,8 +10,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-
-
+    
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +30,12 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <script type="module" src="js/perfil_user.js" defer></script>
-    <script type="module" src="js/Graficas.js" defer></script>
+    <script type="module" src="js/Graficar.js" defer></script>
+    <!-- Enlaces a las librerías -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 </head>
 
@@ -103,7 +107,7 @@
                     <div class="col-sm-12">
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">Velocidad</h6>
-                            <canvas id="velocidad-chart"></canvas>
+                            <canvas id="myChart"></canvas>
                         </div>
                     </div>
                     <div class="col-sm-12">
@@ -127,51 +131,6 @@
                 </div>
             </div>
             <!-- Chart End -->
- 
-            <!-- Chart Start 
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Single Line Chart</h6>
-                            <canvas id="line-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Multiple Line Chart</h6>
-                            <canvas id="salse-revenue"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Single Bar Chart</h6>
-                            <canvas id="bar-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Multiple Bar Chart</h6>
-                            <canvas id="worldwide-sales"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Pie Chart</h6>
-                            <canvas id="pie-chart"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Doughnut Chart</h6>
-                            <canvas id="doughnut-chart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-             Chart End -->
-
-
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
