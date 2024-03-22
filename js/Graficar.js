@@ -17,17 +17,22 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 // Obtencion de datos
-const vel = ref (database, 'Backend/datos/Carro1');
+const vel = doc(database, 'Backend/datos/Carro1');
 console.log("Datos obtenidos");
 
 // Ploteo en tiempo real
-onValue (vel, (snapshot) => {
+onValue(velRef, (snapshot) => {
     const velData = snapshot.val();
     const labels = Object.keys(velData);
     const data = Object.values(velData);
 
-    //Configuramos el primer plot
-    var velChar = new Chart(document.getElementById('velocidad-chart'),{
+    // Actualizar la gráfica
+    updateChart(labels, data);
+});
+
+// Función para actualizar la gráfica
+function updateChart(labels, data) {
+    var velChart = new Chart(document.getElementById('velocidad-chart'),{
         type: 'line',
         data: {
             labels: labels,
@@ -46,6 +51,4 @@ onValue (vel, (snapshot) => {
             }
         }    
     });
-});
-
-console.log("Graficas echas");
+}
