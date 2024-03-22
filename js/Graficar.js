@@ -45,3 +45,5 @@ onValue (vel, (snapshot) => {
         }    
     });
 });
+
+console.log("Graficas echas");
