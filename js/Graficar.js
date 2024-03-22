@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import { getDatabase, ref, onValue, update} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-import "node_modules/chart.js";
+//import "node_modules/chart.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBgBuZFXHhpoQKHyPDIObZjHVEl1R7OhgE",
@@ -43,6 +43,7 @@ onValue(velref, (snapshot) =>{
 
     Object.values(datosCarro1).forEach((dato) =>{
         const velocidad = dato.velocidad;
+        console.log (velocidad);
         chart.data.labels.push(new Date().toLocaleTimeString());
         chart.data.datasets[0].data.push(velocidad);
     });
