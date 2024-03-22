@@ -24,7 +24,7 @@ onValue (vel, (snapshot) => {
     const velData = snapshot.val();
 
     //Configuramos el primer plot
-    var velChar = new CharacterData(document.getElementById('velocidad-chart'),{
+    var velChar = new Chart(document.getElementById('velocidad-chart'),{
         type: 'line',
         data: {
             labels: Object.keys(velData),
