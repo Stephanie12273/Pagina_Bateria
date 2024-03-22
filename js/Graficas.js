@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import app from 'registo.js'
+import app from 'registro.js'
 
 const database = getDatabase(app);
 
