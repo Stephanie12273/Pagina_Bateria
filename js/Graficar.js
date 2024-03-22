@@ -26,6 +26,11 @@ onValue(velRef, (snapshot) => {
     const labels = Object.keys(velData);
     const data = Object.values(velData);
 
+    // Destruir el gráfico anterior si existe
+    if (velChart) {
+        velChart.destroy();
+    }
+        
     // Actualizar la gráfica
     updateChart(labels, data);
 });
@@ -37,6 +42,7 @@ function updateChart(labels, data) {
         data: {
             labels: labels,
             datasets: [{
+                label:'velocidad',
                 data: data,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
