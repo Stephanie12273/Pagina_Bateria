@@ -15,5 +15,33 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+// Obtencion de datos
 const vel = ref (database, 'Backend/datos/Carro1');
 console.log("Datos obtenidos");
+
+// Ploteo en tiempo real
+onValue (vel, (snapshot) => {
+    const velData = snapshot.val();
+
+    //Configuramos el primer plot
+    var velChar = new CharacterData(document.getElementById('velocidad-chart'),{
+        type: 'line',
+        data: {
+            labels: Object.keys(velocidadData),
+            datasets: [{
+                label: 'Velocidad',
+                data: Object.values(velocidadData),
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension : 0.1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }    
+    });
+});
