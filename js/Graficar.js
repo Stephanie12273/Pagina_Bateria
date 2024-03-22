@@ -27,10 +27,10 @@ onValue (vel, (snapshot) => {
     var velChar = new CharacterData(document.getElementById('velocidad-chart'),{
         type: 'line',
         data: {
-            labels: Object.keys(velocidadData),
+            labels: Object.keys(velData),
             datasets: [{
                 label: 'Velocidad',
-                data: Object.values(velocidadData),
+                data: Object.values(velData),
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension : 0.1
