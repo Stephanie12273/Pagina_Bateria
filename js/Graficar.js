@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import { getDatabase, ref, onValue, update} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+import Chart from 'https://cdn.jsdelivr.net/npm/chart.js'; 
 
 const firebaseConfig = {
     apiKey: "AIzaSyBgBuZFXHhpoQKHyPDIObZjHVEl1R7OhgE",
@@ -22,15 +23,16 @@ console.log("Datos obtenidos");
 // Ploteo en tiempo real
 onValue (vel, (snapshot) => {
     const velData = snapshot.val();
+    const labels = Object.keys(velData);
+    const data = Object.values(velData);
 
     //Configuramos el primer plot
     var velChar = new Chart(document.getElementById('velocidad-chart'),{
         type: 'line',
         data: {
-            labels: Object.keys(velData),
+            labels: labels,
             datasets: [{
-                label: 'Velocidad',
-                data: Object.values(velData),
+                data: data,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension : 0.1
